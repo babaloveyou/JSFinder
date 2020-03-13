@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 # By Threezh1
 # https://threezh1.github.io/
@@ -182,10 +182,17 @@ def find_by_url_deep(url):
 	for link in links:
 		temp_urls = find_by_url(link)
 		if temp_urls == None: continue
-		print("Remaining " + str(i) + " | Find " + str(len(temp_urls)) + " URL in " + link)
+		urls.append("Remaining " + str(i) + " | Find " + str(len(temp_urls)) + " URL in " + link)
 		for temp_url in temp_urls:
-			if temp_url not in urls:
-				urls.append(temp_url)
+			if '.js' in temp_url:
+				temp_temp_urls = find_by_url(temp_url)
+				if temp_temp_urls == None: continue
+				urls.append("RemainingRemaining")
+				for temp_temp_url in temp_temp_urls:
+					if temp_temp_url not in urls:
+						urls.append(temp_temp_url)
+		if temp_url not in urls:
+			urls.append(temp_url)
 		i -= 1
 	return urls
 
